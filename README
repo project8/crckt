@@ -1,0 +1,13 @@
+crckt is a quick and dirty monte carlo which contains absolutely no
+physics whatsoever, guaranteed.  it simply generates a series of chirps,
+in the radar sense, and writes them to data.  
+
+your end of the bargain:
+specify an event rate, a center frequency, a bandwidth, a time of
+flight, a sample rate, and a signal to noise ratio.
+
+crckt end of the bargain:
+a simulated poisson process, where an event corresponds to a chirp.  
+CHIPS ARE ALLOWED TO OVERLAP.  gaussian white noise is also added to the
+signal, in such a way that the S/N ratio for a single chirp (i.e. one
+with no pileup) is what you specify.
