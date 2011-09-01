@@ -1,14 +1,4 @@
-/*
- * An implementation of the Mersenne Twister RNG, shamelessly stolen from
- * http://www.qbrundage.com/michaelb/pubs/essays/random_number_generation
- */
-
-#include <stdlib.h>
-
-#define MT_LEN       624
-
-int mt_index;
-unsigned long mt_buffer[MT_LEN];
+#include "crckt_mt.h"
 
 void mt_init() {
   int i;
@@ -16,14 +6,6 @@ void mt_init() {
     mt_buffer[i] = rand();
   mt_index = 0;
 }
-
-#define MT_IA           397
-#define MT_IB           (MT_LEN - MT_IA)
-#define UPPER_MASK      0x80000000
-#define LOWER_MASK      0x7FFFFFFF
-#define MATRIX_A        0x9908B0DF
-#define TWIST(b,i,j)    ((b)[i] & UPPER_MASK) | ((b)[j] & LOWER_MASK)
-#define MAGIC(s)        (((s)&1)*MATRIX_A)
 
 unsigned long mt_random() {
   unsigned long * b = mt_buffer;
