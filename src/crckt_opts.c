@@ -1,5 +1,16 @@
 #include "crckt_opts.h"
 
+void crckt_usage() {
+  printf("crckt!\n");
+  printf("\t -h display this message and exit\n");
+  printf("\t -e set event rate in Hz\n");
+  printf("\t -s set sampling rate in MHz\n");
+  printf("\t -f set center frequency in MHz\n");
+  printf("\t -b set chirp bandwidth in MHz\n");
+  printf("\t -t set electron TOF in seconds\n");
+  printf("\t -r set signal-to-noise ratio\n");
+}
+
 int args_to_info(crckt_run_info* tgt, int argc, char** argv) {
   int result = -1;
 
@@ -7,10 +18,15 @@ int args_to_info(crckt_run_info* tgt, int argc, char** argv) {
     int c;
     opterr = 0;
      
-    while ((c = getopt (argc, argv, "e:s:f:b:t:r:")) != -1)
+    while ((c = getopt (argc, argv, "he:s:f:b:t:r:")) != -1)
       switch (c)
 	{
 	  // event rate in Hz
+	case 'h':
+	  crckt_usage();
+	  c = -1;
+	  result = -1;
+	  break;
 	case 'e':
 	  tgt->event_rate = strtol(optarg,NULL,10);
 	  tgt->conf_mask |= event_rate_set;
