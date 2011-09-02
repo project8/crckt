@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <getopt.h>
+#include "crckt_physics.h"
 
 /* exiting status conditions */
 const static int crckt_normal = 0;
