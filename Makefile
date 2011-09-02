@@ -13,4 +13,4 @@ $(TGT): $(OBJ)
 
 %.o: %.c $(BUILDIR)
 	@echo C $(basename $(notdir $@))
-	$(CC) $(CFLAGS) $(INCDIRS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCDIRS) -c $< -o $@
