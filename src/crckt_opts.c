@@ -60,22 +60,63 @@ void process_defaults(crckt_run_info* info) {
   }
 
   if( !chk_bit(info,sample_rate_set) ) {
-    info->sample_rate = 5e8; // Default event rate is 500 MHz
+    info->sample_rate = 5e8; // Default sample rate is 500 MHz
   }
 
   if( !chk_bit(info,f_center_set) ) {
-    info->f_center = 5e7; // Default event rate is 50MHz
+    info->f_center = 5e7; // Default center frequency is 50MHz
   }
 
   if( !chk_bit(info,f_bw_set) ) {
-    info->f_bw = 5e7; // Default event rate is 50MHz
+    info->f_bw = 5e7; // Default chirp bandwidth is 50MHz
   }
 
   if( !chk_bit(info,e_tof_set) ) {
-    info->e_tof = 1; // Default time of flight is 30us in samples
+    info->e_tof = discretize(info->sample_rate,30.0e-6); // 30us
   }
 
   if( !chk_bit(info,sn_ratio_set) ) {
     info->sn_ratio = 2; // Default signal to noise is 2
   }
+}
+
+void print_run_info(crckt_run_info* info) {
+  printf("run information:\n");
+
+  printf("\t");
+  if( chk_bit(info,event_rate_set) ) {
+    printf("(user)");
+  }
+  printf("event rate: %luHz\n",info->event_rate);
+
+  printf("\t");
+  if( chk_bit(info,sample_rate_set) ) {
+    printf("(user)");
+  }
+  printf("sample rate: %fMHz\n",info->sample_rate/1.0e6);
+
+  printf("\t");
+  if( chk_bit(info,f_center_set) ) {
+    printf("(user)");
+  }
+  printf("chirp center frequency: %fMHz\n",info->f_center/1.0e6);
+
+  printf("\t");
+  if( chk_bit(info,f_bw_set) ) {
+    printf("(user)");
+  }
+  printf("chirp bandwidth: %fMHz\n",info->f_bw/1.0e6);
+  
+  printf("\t");
+  if( chk_bit(info,e_tof_set) ) {
+    printf("(user)");
+  }
+  printf("electron TOF: %lu samples\n",info->e_tof);
+
+  printf("\t");
+  if( chk_bit(info,sn_ratio_set) ) {
+    printf("(user)");
+  }
+  printf("signal to noise ratio: %u\n",info->sn_ratio);
+
 }
