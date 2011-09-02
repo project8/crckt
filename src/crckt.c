@@ -9,6 +9,9 @@ int main(int argc, char** argv) {
   crckt_run_info* opts = malloc(sizeof(crckt_run_info));
 
   if( args_to_info(opts,argc,argv) ) {
+    // Print information to terminal
+    print_run_info(opts);
+
     // Initialize the random number generator
     mt_init();
     FILE* out = fopen("output.dat","w");
