@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <getopt.h>
+#include <stdio.h>
 #include "crckt_physics.h"
 
 /* exiting status conditions */
@@ -44,5 +45,10 @@ int args_to_info(crckt_run_info* tgt, int argc, char** argv);
  * takes care of default parameters
  */
 void process_defaults(crckt_run_info* info);
+
+/*
+ * prints information
+ */
+void print_run_info(crckt_run_info* info);
 
 #endif // __crckt_opts_h
